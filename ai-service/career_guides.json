@@ -1,0 +1,47 @@
+[
+  {
+    "role": "AI Engineer",
+    "required_skills": ["Python", "Machine Learning", "RAG", "Vector Databases", "Docker", "Git"],
+    "learning_path": [
+      "Phase 1: Advanced Python, OOP, and data structures.",
+      "Phase 2: Math, statistics, and machine learning fundamentals.",
+      "Phase 3: LLM application development, embeddings, and Supabase pgvector.",
+      "Phase 4: Tool-calling AI agents and production containerization with Docker."
+    ],
+    "recommended_resources": [
+      "DeepLearning.AI: LangChain & Vector Databases Course",
+      "FastAPI Official Documentation",
+      "Docker & Kubernetes Zero to Mastery"
+    ]
+  },
+  {
+    "role": "Full Stack Developer",
+    "required_skills": ["JavaScript", "React", "Node.js", "Express", "MongoDB", "Git", "REST APIs"],
+    "learning_path": [
+      "Phase 1: Modern JavaScript (ES6+), DOM, and responsive Tailwind UI.",
+      "Phase 2: React component lifecycle, hooks, and global state.",
+      "Phase 3: Node.js & Express RESTful microservice architectures.",
+      "Phase 4: MongoDB aggregation, database indexing, and JWT authentication."
+    ],
+    "recommended_resources": [
+      "The Odin Project: Full Stack JavaScript",
+      "Full Stack Open - University of Helsinki",
+      "Official React & Node.js Documentation"
+    ]
+  },
+  {
+    "role": "DevOps Engineer",
+    "required_skills": ["Linux", "Docker", "Kubernetes", "Terraform", "CI/CD", "Git", "Bash"],
+    "learning_path": [
+      "Phase 1: Linux shell scripting, server administration, and Git workflows.",
+      "Phase 2: Multi-stage Docker containerization and Docker Compose.",
+      "Phase 3: Kubernetes cluster orchestration, Pods, Deployments, and Services.",
+      "Phase 4: Infrastructure as Code (IaC) with Terraform and automated CI/CD."
+    ],
+    "recommended_resources": [
+      "Linux Foundation Certified System Administrator (LFCS)",
+      "KodeKloud: Kubernetes for Beginners",
+      "HashiCorp Terraform Associate Guide"
+    ]
+  }
+]
