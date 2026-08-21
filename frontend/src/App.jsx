@@ -20,6 +20,7 @@ import { createClient } from '@supabase/supabase-js';
 import Profile from './Profile';
 import Assessment from './Assessment';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const supabase = createClient(
   'https://cmvwhpbultkjchyhmfga.supabase.co',
   'sb_publishable_Q_lu-LHE5UN4Ef1U0PF8-Q_uJqH0lLg'
@@ -80,7 +81,7 @@ export default function App() {
     setError(null);
     setSaveSuccess(false);
     try {
-      const response = await axios.post('http://localhost:5000/api/roadmap/generate', {
+      const response = await axios.post(`${API_URL}/api/roadmap/generate`, {
         user_query: userQuery,
         current_skills: currentSkills,
         target_role: targetRole,
@@ -145,7 +146,7 @@ export default function App() {
 
     setSaveLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/roadmaps/save', {
+      const response = await axios.post(`${API_URL}/api/roadmaps/save`, {
         user_id: user.id,
         target_role: targetRole,
         current_skills: currentSkills,

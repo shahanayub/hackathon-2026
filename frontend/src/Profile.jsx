@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Target, CheckCircle2, Loader2, Trash2, BookOpen, Clock, User as UserIcon, Upload } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function Profile({ user }) {
   const [roadmaps, setRoadmaps] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ export default function Profile({ user }) {
 
   const fetchRoadmaps = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/roadmaps/${user.id}`);
+      const response = await axios.get(`${API_URL}/api/roadmaps/${user.id}`);
       if (response.data.success) {
         setRoadmaps(response.data.roadmaps);
       }
@@ -45,7 +47,7 @@ export default function Profile({ user }) {
     e.preventDefault();
     setSaveLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/profile/${user.id}`, profileData);
+      await axios.put(`${API_URL}/api/profile/${user.id}`, profileData);
       alert('Profile updated successfully in MongoDB!');
     } catch (err) {
       alert('Error saving profile');
@@ -56,7 +58,7 @@ export default function Profile({ user }) {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/roadmaps/${id}`);
+      const response = await axios.delete(`${API_URL}/api/roadmaps/${id}`);
       if (response.data.success) {
         setRoadmaps(roadmaps.filter(roadmap => (roadmap._id || roadmap.id) !== id));
       }
