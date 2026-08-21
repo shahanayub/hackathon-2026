@@ -142,7 +142,7 @@ export default function App() {
 
     setSaveLoading(true);
     try {
-      const { error } = await supabase.from('saved_roadmaps').insert({
+      const response = await axios.post('http://localhost:5000/api/roadmaps/save', {
         user_id: user.id,
         target_role: targetRole,
         current_skills: currentSkills,
@@ -152,11 +152,12 @@ export default function App() {
         curated_resources: result.curated_resources
       });
 
-      if (error) throw error;
-      setSaveSuccess(true);
-      setTimeout(() => setSaveSuccess(false), 4000);
+      if (response.data.success) {
+        setSaveSuccess(true);
+        setTimeout(() => setSaveSuccess(false), 4000);
+      }
     } catch (err) {
-      alert(`Could not save roadmap: ${err.message}`);
+      alert(`Could not save roadmap: ${err.response?.data?.error || err.message}`);
     } finally {
       setSaveLoading(false);
     }
