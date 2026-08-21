@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import Profile from './Profile';
+import Assessment from './Assessment';
 
 const supabase = createClient(
   'https://cmvwhpbultkjchyhmfga.supabase.co',
@@ -33,7 +34,9 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
-  const [currentView, setCurrentView] = useState('generator'); // 'generator' or 'profile'
+  const [currentView, setCurrentView] = useState('generator'); 
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+
 
   // Supabase Auth & Save State
   const [user, setUser] = useState(null);
@@ -162,6 +165,12 @@ export default function App() {
       setSaveLoading(false);
     }
   };
+
+  const handleAssessmentComplete = (score) => {
+    setIsAssessmentOpen(false);
+    alert(`Awesome! You scored ${score}% on the foundational assessment.`);
+  };
+
 
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 font-sans relative">
@@ -299,6 +308,14 @@ export default function App() {
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white"
                 />
               </div>
+
+               
+        <button 
+          onClick={() => setIsAssessmentOpen(true)}
+          className="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-3 rounded-xl font-semibold mb-4 transition-all flex items-center justify-center gap-2 border border-slate-700"
+        >
+          Take Skill Assessment First
+        </button>   
 
               <button
                 onClick={handleGenerateRoadmap}
@@ -532,6 +549,26 @@ export default function App() {
                 {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Assessment Modal Overlay */}
+      {isAssessmentOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative shadow-2xl">
+            
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsAssessmentOpen(false)}
+              className="absolute top-4 right-4 p-2 bg-slate-800 text-slate-400 hover:text-white rounded-lg transition-colors"
+            >
+              Close
+            </button>
+
+            {/* The Quiz Component */}
+            <Assessment onComplete={handleAssessmentComplete} />
+            
           </div>
         </div>
       )}

@@ -73,6 +73,20 @@ app.post('/api/profile', async (req, res) => {
     }
 });
 
+// Update User Profile
+app.put('/api/profile/:uid', async (req, res) => {
+    try {
+        const updatedUser = await User.findOneAndUpdate(
+            { supabase_uid: req.params.uid },
+            { $set: req.body },
+            { new: true }
+        );
+        res.json({ success: true, user: updatedUser });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 // 3. Save Roadmap to mongoDB
 app.post('/api/roadmaps/save', async (req, res) => {
     try {
